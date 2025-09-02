@@ -51,19 +51,19 @@ const ItemsList = () => {
                     }}
                   />
                   <td
-                    className="border border-slate-300 p-2 font-bold xl:max-w-44 break-words"
+                    className="border border-slate-300 p-2 font-bold md:max-w-44 break-words"
                     dangerouslySetInnerHTML={{
                       __html: highlightText(e.URAIAN),
                     }}
                   />
                   <td
-                    className="border border-slate-300 p-2 xl:max-w-96 break-words"
+                    className="border border-slate-300 p-2 max-w-48 sm:max-w-64 md:max-w-96 break-words"
                     dangerouslySetInnerHTML={{
                       __html: highlightText(e.DESKRIPSI),
                     }}
                   />
                   <td
-                    className="border border-slate-300 p-2"
+                    className="border border-slate-300 p-2 break-words"
                     dangerouslySetInnerHTML={{
                       __html: highlightText(e.KETENTUAN),
                     }}
