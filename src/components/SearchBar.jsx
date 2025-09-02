@@ -32,7 +32,7 @@ const SearchBar = ({kodeMinW, flexSize, tabTitle}) => {
             </button>
           </div>
 
-          <div className="flex text-center border-y-2 mt-4 border-slate-300">
+          {/* <div className="flex text-center border-y-2 mt-4 border-slate-300">
             <h2 className={`font-bold flex-[${flexSize[0]}] text-sm py-2 min-w-32 ${kodeMinW} border-x-2 border-slate-300`}>
               {tabTitle[0]}
             </h2>
@@ -45,7 +45,7 @@ const SearchBar = ({kodeMinW, flexSize, tabTitle}) => {
             <h2 className={`flex-[${flexSize[3]}] px-2 font-bold text-sm py-2  border-r-2 border-slate-300`}>
             {tabTitle[3]}
             </h2>
-          </div>
+          </div> */}
       </form>
     </>
   );

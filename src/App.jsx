@@ -4,7 +4,6 @@ import CariKodeBelanja from "./pages/CariKodeBelanja";
 import { Route } from "react-router-dom";
 import CariKodeAsset from "./pages/CariKodeAsset";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import NotFoundPage from "./pages/NotFoundPage";
 import { Navigate } from "react-router-dom";
 

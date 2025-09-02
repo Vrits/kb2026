@@ -1,72 +1,15 @@
-import { useLocation } from "react-router-dom";
-import { useBelanja } from "../context/BelanjaContext";
-import { NavLink } from "react-router-dom";
+import A from "../img/A.png";
+import B from "../img/B.png";
+import C from "../img/C.png";
 
 const Navbar = ({ children }) => {
-  const { searchInputHandler } = useBelanja();
-  const { pathname } = useLocation();
   return (
     <>
-      <header
-        className={`bg-slate-900 backdrop-blur-sm w-full py-2 px-8 shadow-md flex justify-center min-w-[412px] ${
-          pathname == "/" ? "hidden" : "block"
-        }`}
-      >
-        <div className="flex text-slate-200 ">
-          {/* <NavLink
-            to={"/"}
-            onClick={() => {
-              searchInputHandler("");
-            }}
-            className={({ isActive }) =>
-              `font-bold text-lg px-4 py-2 ${
-                isActive ? "bg-yellow-200 rounded-lg text-slate-900 " : ""
-              }`
-            }
-          >
-            Home
-          </NavLink> */}
-          <NavLink
-            to={"/rekening"}
-            onClick={() => {
-              searchInputHandler("");
-            }}
-            className={({ isActive }) =>
-              `font-bold text-lg px-4 py-2 ${
-                isActive ? "bg-yellow-200 rounded-lg text-slate-900 " : ""
-              }`
-            }
-          >
-            Rekening
-          </NavLink>
-          <NavLink
-            to={"/asset"}
-            onClick={() => {
-              searchInputHandler("");
-            }}
-            className={({ isActive }) =>
-              `font-bold text-lg px-4 py-2 ${
-                isActive ? "bg-yellow-200 rounded-lg text-slate-900 " : ""
-              }`
-            }
-          >
-            Asset
-          </NavLink>
-          {/* <NavLink
-            to={"/faq"}
-            onClick={() => {
-              searchInputHandler("");
-            }}
-            className={({ isActive }) =>
-              `font-bold text-lg px-4 py-2 ${
-                isActive ? "bg-yellow-200 rounded-lg text-slate-900 " : ""
-              }`
-            }
-          >
-            FAQ
-          </NavLink> */}
-        </div>
-      </header>
+      <nav className="w-full text-white flex items-center justify-between px-4 py-2">
+        <img src={A} alt="" className="h-28 w-auto"/>
+        <img src={B} alt="" className="h-28 w-auto"/>  
+        <img src={C} alt="" className="h-28 w-auto"/>
+      </nav>
       {children}
       <div className="h-12"></div>
     </>

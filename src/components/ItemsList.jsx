@@ -1,12 +1,9 @@
 import kodeBelanja from "../json/kodeBelanja.json";
-import ReadMore from "./ReadMore";
 import { useBelanja } from "../context/BelanjaContext";
 import Pagination from "./Pagination";
 
 const ItemsList = () => {
-  const { startIndex, endIndex } = useBelanja();
-
-  const { searchInput } = useBelanja();
+  const { startIndex, endIndex, searchInput } = useBelanja();
 
   const filteredKodeBelanja =
     searchInput !== ""
@@ -27,52 +24,59 @@ const ItemsList = () => {
   };
 
   return (
-    <>
-      <div className="divide-y-2 flex flex-col justify-between divide-slate-300  bg-slate-200 min-w-[412px] rounded-lg">
-        <div className="w-full"></div>
-        {filteredKodeBelanja.length < 1 ? (
-          <div className="text-center py-8 text-xl font-bold">
-            Tidak ada data yang ditemukan.
-          </div>
-        ) : null}
-        {currentData.map((e, i) => (
-          <div key={e["Kode Akun"] + i} className="flex">
-            <div className="flex-[1] min-w-32 sm:min-w-[8.5rem] border-x-2 border-slate-300">
-              <h2
-                dangerouslySetInnerHTML={{
-                  __html: highlightText(`${e["Kode Akun"]}`),
-                }}
-                className="font-bold text-xs sm:text-sm p-2"
-              />
-            </div>
-            <div className="p-2 flex-[3] border-r-2 border-slate-300">
-              <h3
-                dangerouslySetInnerHTML={{
-                  __html: highlightText(e["Uraian Akun"]),
-                }}
-                className="font-bold text-xs sm:text-sm"
-              />
-            </div>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: highlightText(e.Deskripsi),
-              }}
-              className="p-2 flex-[6] text-xs sm:text-sm border-r-2 border-slate-300"
-            />
+    <div className="bg-slate-200 min-w-[412px] rounded-b-lg p-2">
+      {filteredKodeBelanja.length < 1 ? (
+        <div className="text-center py-8 text-xl font-bold">
+          Tidak ada data yang ditemukan.
+        </div>
+      ) : (
+        <div className="">
+          <table className="w-full border-collapse border border-slate-300 text-xs sm:text-sm">
+            <thead className="bg-slate-300 shadow">
+              <tr>
+                <th className="border bg-slate-300 border-slate-400 sticky top-[55px] z-20 p-2">KODE AKUN</th>
+                <th className="border bg-slate-300 border-slate-400 sticky top-[55px] z-20 p-2">URAIAN AKUN</th>
+                <th className="border bg-slate-300 border-slate-400 sticky top-[55px] z-20 p-2">DESKRIPSI</th>
+                <th className="border bg-slate-300 border-slate-400 sticky top-[55px] z-20 p-2">CONTOH / KETENTUAN</th>
+              </tr>
+            </thead>
 
-            <div className="p-2 flex-[3] text-xs sm:text-sm border-r-2 border-slate-300">
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: highlightText(e["Contoh / Ketentuan"]),
-                }}
-              ></p>
-            </div>
-          </div>
-        ))}
+            <tbody>
+              {currentData.map((e, i) => (
+                <tr key={e.KODE + i} className="odd:bg-white even:bg-slate-100">
+                  <td
+                    className="border border-slate-300 p-2 font-bold"
+                    dangerouslySetInnerHTML={{
+                      __html: highlightText(`${e.KODE}`),
+                    }}
+                  />
+                  <td
+                    className="border border-slate-300 p-2 font-bold xl:max-w-44 break-words"
+                    dangerouslySetInnerHTML={{
+                      __html: highlightText(e.URAIAN),
+                    }}
+                  />
+                  <td
+                    className="border border-slate-300 p-2 xl:max-w-96 break-words"
+                    dangerouslySetInnerHTML={{
+                      __html: highlightText(e.DESKRIPSI),
+                    }}
+                  />
+                  <td
+                    className="border border-slate-300 p-2"
+                    dangerouslySetInnerHTML={{
+                      __html: highlightText(e.KETENTUAN),
+                    }}
+                  />
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
-        <Pagination totalItems={filteredKodeBelanja.length} />
-      </div>
-    </>
+      <Pagination totalItems={filteredKodeBelanja.length} />
+    </div>
   );
 };
 
