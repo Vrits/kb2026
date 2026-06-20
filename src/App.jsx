@@ -13,6 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to={"/rekening"} />} />
           <Route path="/rekening" element={<CariKodeBelanja />} />
+          <Route path="/pendapatan" element={<CariKodeBelanja />} />
+          <Route path="/pembiayaan" element={<CariKodeBelanja />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Navbar>

@@ -1,25 +1,41 @@
+import { useLocation } from "react-router-dom"; // Import useLocation
 import kodeBelanja from "../json/kodeBelanja.json";
+import kodePendapatan from "../json/kodePendapatan.json";
+import kodePembiayaan from "../json/kodePembiayaan.json";
 import { useBelanja } from "../context/BelanjaContext";
 import Pagination from "./Pagination";
 
 const ItemsList = () => {
   const { startIndex, endIndex, searchInput } = useBelanja();
+  const location = useLocation(); // Mendapatkan route saat ini
+
+  // Menentukan data source berdasarkan route
+  let selectedData;
+  if (location.pathname === "/pendapatan") {
+    selectedData = kodePendapatan;
+  } else if (location.pathname === "/pembiayaan") {
+    selectedData = kodePembiayaan;
+  } else {
+    selectedData = kodeBelanja; // Default ke rekening
+  }
 
   const filteredKodeBelanja =
     searchInput !== ""
-      ? kodeBelanja.filter((item) =>
+      ? selectedData.filter((item) =>
           Object.values(item).some((value) =>
-            `${value}`.toLowerCase().includes(searchInput.toLowerCase())
-          )
+            `${value}`.toLowerCase().includes(searchInput.toLowerCase()),
+          ),
         )
-      : kodeBelanja;
+      : selectedData;
 
   const currentData = filteredKodeBelanja.slice(startIndex, endIndex);
+
+  // ... sisa kode lainnya sama
 
   const highlightText = (text) => {
     return text.replace(
       new RegExp(searchInput, "gi"),
-      (match) => `<span class="highlight">${match}</span>`
+      (match) => `<span class="highlight">${match}</span>`,
     );
   };
 
@@ -34,10 +50,19 @@ const ItemsList = () => {
           <table className="w-full border-collapse border border-slate-300 text-xs sm:text-sm">
             <thead className="bg-slate-300 shadow">
               <tr>
-                <th className="border bg-slate-300 border-slate-400 sticky top-[55px] z-20 p-2">KODE AKUN</th>
-                <th className="border bg-slate-300 border-slate-400 sticky top-[55px] z-20 p-2">URAIAN AKUN</th>
-                <th className="border bg-slate-300 border-slate-400 sticky top-[55px] z-20 p-2">DESKRIPSI</th>
-                <th className="border bg-slate-300 border-slate-400 sticky top-[55px] z-20 p-2">CONTOH / KETENTUAN</th>
+                {/* Sesuaikan angka top-[...] agar pas di bawah SearchBar */}
+                <th className="border bg-slate-300 border-slate-400 sticky top-[120px] z-10 p-2">
+                  KODE AKUN
+                </th>
+                <th className="border bg-slate-300 border-slate-400 sticky top-[120px] z-10 p-2">
+                  URAIAN AKUN
+                </th>
+                <th className="border bg-slate-300 border-slate-400 sticky top-[120px] z-10 p-2">
+                  DESKRIPSI
+                </th>
+                <th className="border bg-slate-300 border-slate-400 sticky top-[120px] z-10 p-2">
+                  CONTOH / KETENTUAN
+                </th>
               </tr>
             </thead>
 
