@@ -24,7 +24,7 @@ const SearchBar = () => {
     >
       {/* Container Navigasi */}
       <div className="flex justify-center gap-6 pt-3 pb-1 border-b border-slate-200">
-        <Link to="/rekening" className={getButtonClass("/rekening")}>Rekening</Link>
+        <Link to="/rekening" className={getButtonClass("/rekening")}>Belanja</Link>
         <Link to="/pendapatan" className={getButtonClass("/pendapatan")}>Pendapatan</Link>
         <Link to="/pembiayaan" className={getButtonClass("/pembiayaan")}>Pembiayaan</Link>
       </div>
